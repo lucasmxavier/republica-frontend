@@ -1,0 +1,68 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="receitaDespesaService.form">
+    <div class="container">
+        <input type="hidden" formControlName="$key">
+        <div>
+            <label>Tipo: </label>
+            <mat-radio-group class="radio-group" formControlName="tipo" [(ngModel)]="receitaDespesaDto.tipo">
+                <mat-radio-button class="radio-button" value="Despesa">Despesa</mat-radio-button>
+                <mat-radio-button class="radio-button" value="Receita">Receita</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <mat-form-field>
+            <input formControlName="descricao" matInput placeholder="Descrição" [(ngModel)]="receitaDespesaDto.descricao"
+                name="descricao">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="valor" matInput type="number" placeholder="Valor(R$)"
+                [(ngModel)]="receitaDespesaDto.valor" name="valor">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <div>
+            <label>Período: </label>
+            <mat-radio-group class="radio-group" formControlName="periodo" [(ngModel)]="receitaDespesaDto.periodo">
+                <mat-radio-button class="radio-button" value="Mensal">Mensal</mat-radio-button>
+                <mat-radio-button class="radio-button" value="Semestral">Semestral</mat-radio-button>
+                <mat-radio-button class="radio-button" value="Indefinido">Indefinido</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div>
+            <label>Divisão: </label>
+            <section class="checkbox-section">
+                <mat-checkbox #inputEl *ngFor="let morador of republica.moradores" class="checkbox-margin" [value]="morador" (change)="onCheck(morador, inputEl.checked)">
+                    {{ morador.nome }}
+                </mat-checkbox>
+            </section>
+        </div>
+
+        <mat-form-field>
+            <input formControlName="dataLancamento" matInput [matDatepicker]="picker" placeholder="Data de Lançamento"
+                [(ngModel)]="receitaDespesaDto.dataLancamento" name="dataLancamento" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="dataVencimentoRecebimento" matInput [matDatepicker]="picker2"
+                placeholder="Data de Vencimento / Recebimento" [(ngModel)]="receitaDespesaDto.dataVencimentoRecebimento"
+                name="dataVencimentoRecebimento" disabled>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+        </mat-form-field>
+
+        <div>
+            <label>Efetivado: </label>
+            <mat-radio-group class="radio-group" formControlName="efetivado" [(ngModel)]="receitaDespesaDto.efetivado">
+                <mat-radio-button class="radio-button" value="true">Sim</mat-radio-button>
+                <mat-radio-button class="radio-button" value="false">Não</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <button type="submit" mat-raised-button color="primary"
+            [disabled]="receitaDespesaService.form.invalid">Cadastrar</button>
+    </div>
+</form>

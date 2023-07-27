@@ -1,0 +1,17 @@
+#divDate {
+  margin-top: 10px;
+}
+
+#divChart {
+  display: block;
+  width: 600px;
+  height: 500px;
+}
+
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}

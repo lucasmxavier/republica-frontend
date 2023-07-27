@@ -1,0 +1,17 @@
+ul{
+    list-style-type: none;
+}
+
+.notification{
+    margin-top: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.botoes{
+    position: relative;
+    margin-top:5px ;
+}
+.btn{
+    margin: 5px;
+}

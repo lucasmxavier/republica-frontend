@@ -1,0 +1,46 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="tarefaService.form">
+  <div class="container">
+    <input type="hidden" formControlName="$key" />
+    <div>
+      <mat-form-field>
+        <input formControlName="descricao" matInput 
+          placeholder="Descrição" [(ngModel)]="tarefaDto.descricao"
+          name="descricao" />
+        <mat-error>Este campo é obrigatório.</mat-error>
+      </mat-form-field>
+
+      <div>
+        <label>Moradores: </label>
+          <mat-checkbox #inputEl 
+            *ngFor="let morador of morador.republica.moradores" 
+            class="checkbox-margin"
+            [value]="morador" 
+            (change)="onCheck(morador, inputEl.checked)">
+            {{ morador.nome }}
+          </mat-checkbox>
+      </div>
+
+      <mat-form-field>
+        <input formControlName="dataTermino" matInput 
+          [matDatepicker]="picker2"
+          placeholder="Data de Vencimento / Recebimento" 
+          [(ngModel)]="tarefaDto.dataTermino" 
+          name="dataTermino"
+          disabled />
+
+        <mat-datepicker-toggle matSuffix 
+        [for]="picker2">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #picker2 
+          disabled="false">
+        </mat-datepicker>
+        
+      </mat-form-field>
+    </div>
+
+    <button type="submit" mat-raised-button color="primary" [disabled]="tarefaService.form.invalid">
+      Cadastrar
+    </button>
+  </div>
+</form>

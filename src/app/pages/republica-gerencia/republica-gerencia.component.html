@@ -1,0 +1,98 @@
+<div *ngIf="morador !== undefined, else elseIncludeProfile">
+    <div *ngIf="morador.republica; else elseBlock">
+        República {{republica.nome}}<br>
+        Data de Fundação: {{republica.dataFundacao}}<br>
+        Endereço:<br>
+        {{republica.endereco.logradouro}}<br>
+        {{republica.endereco.cep}}<br>
+        {{republica.endereco.bairro}}<br>
+        {{republica.endereco.cidade}}<br>
+        {{republica.endereco.estado}}<br>
+        {{republica.endereco.pontoDeReferencia}}<br>
+        {{republica.endereco.localizacaoGeografica}}<br>
+        Vantagens: {{republica.vantagens}}<br>
+        Número de Vagas: {{republica.numeroVagas}}<br>
+        Número de Vagas disponíveis: {{republica.numeroVagasDisponiveis}}<br>
+        Tipo do Imóvel: {{republica.tipoImovel}}<br>
+        Gênero: {{republica.genero}}<br>
+        Link do Estatuto: {{republica.linkEstatuto}}<br>
+        Representante: {{republica.representante.nome}}<br>
+        <br>
+        <br>
+        <ng-template [ngIf]="morador.representante">
+            <button mat-flat-button color="primary" (click)="onUpdateRepublica(republica)">Editar república</button>
+            &nbsp;
+            <button mat-flat-button color="warn" (click)="onDeleteRepublica(republica.id)">Excluir república</button>
+            &nbsp;
+            <button mat-flat-button color="accent" (click)="onConvidarMorador()">Convidar morador</button>
+            &nbsp;
+        </ng-template>
+        <button mat-flat-button color="warn" (click)="onSair(republica.id)">Sair da república</button>
+        <br>
+        <br>
+        <div *ngIf="morador.representante" class="mat-elevation-z8">
+            <table mat-table [dataSource]="republica.moradores" class="full-width-table">
+
+                <ng-container matColumnDef="nome">
+                    <th mat-header-cell *matHeaderCellDef> Nome </th>
+                    <td mat-cell *matCellDef="let morador1"> {{morador1.nome}}
+                        <ng-template [ngIf]="morador.id == morador1.id">
+                            &nbsp;(Você)
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="apelido">
+                    <th mat-header-cell *matHeaderCellDef> Apelido </th>
+                    <td mat-cell *matCellDef="let morador"> {{morador.apelido}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="telefone">
+                    <th mat-header-cell *matHeaderCellDef> Telefone </th>
+                    <td mat-cell *matCellDef="let morador"> {{morador.telefone}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="link">
+                    <th mat-header-cell *matHeaderCellDef> Link </th>
+                    <td mat-cell *matCellDef="let morador"> {{morador.link}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="telefoneResponsavel1">
+                    <th mat-header-cell *matHeaderCellDef> Telefone Responsável 1 </th>
+                    <td mat-cell *matCellDef="let morador"> {{morador.telefoneResponsavel1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="telefoneResponsavel2">
+                    <th mat-header-cell *matHeaderCellDef> Telefone Responsável 2 </th>
+                    <td mat-cell *matCellDef="let morador"> {{morador.telefoneResponsavel2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="acoes">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let morador">
+                        <!--<button mat-flat-button color="accent" (click)="onDetalhes(morador)">Detalhes</button>-->
+                        <ng-template [ngIf]="!morador.representante">
+                            <button mat-flat-button color="warn" (click)="onDeleteMorador(morador)">Excluir morador</button>
+                            &nbsp;
+                            &nbsp;
+                            <button mat-flat-button color="accent" (click)="onAlterarRepresentante(morador)">Conceder
+                                representante</button>
+                        </ng-template>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+    <ng-template #elseBlock>
+        Você não possui república!<br>
+        <button mat-flat-button color="sucess" (click)="onCriarRepublica()">Criar República</button>
+    </ng-template>
+</div>
+
+<ng-template #elseIncludeProfile>
+    Você deve cadastrar um perfil antes de criar uma república!<br>
+    <button mat-flat-button color="sucess" (click)="handleCreateProfile()">Preencher Perfil</button>
+</ng-template>

@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Efetuar Estorno</h1>
+<div mat-dialog-content>
+    <p><b><h4>Tipo: </h4></b>{{ data.tipo }}</p>
+    <p><b><h4>Descrição: </h4></b>{{ data.descricao }}</p>
+    <p><b><h4>Valor: </h4></b>{{ data.valor | currency: "BRL" }}</p>
+    <p><b><h4>Data Lançamento: </h4></b>{{ data.dataLancamento  | date: "dd/MM/yyyy hh:mm:ss" }}</p>
+    <p><b><h4>Data Vencimento/Recebimento: </h4></b>{{ data.dataVencimentoRecebimento  | date: "dd/MM/yyyy hh:mm:ss" }}</p>
+    <div *ngIf="data.efetivado == true; else nao">
+      <p><b><h4>Efetivado: </h4></b>Sim</p>
+    </div>
+    <ng-template #nao>
+        <p><b><h4>Efetivado: </h4></b>Não</p>
+    </ng-template>
+    <a></a>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onConfirmarEstorno(data)">Estornar</button>
+</div>

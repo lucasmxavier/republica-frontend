@@ -1,0 +1,15 @@
+<div id="divDate">
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp" placeholder="Mes e Ano" [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+</div>
+<div id="divChart">
+  <canvas id="myChart"></canvas>
+</div>

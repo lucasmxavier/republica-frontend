@@ -1,0 +1,52 @@
+<h2>Tarefa</h2>
+<button mat-raised-button color="primary" (click)="onCreate()">Adicionar Tarefa</button>
+<br>
+<br>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="tarefas" class="full-width-table">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let tarefa"> {{tarefa.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataAgendamento">
+            <th mat-header-cell *matHeaderCellDef> Data Agendamento</th>
+            <td mat-cell *matCellDef="let tarefa"> {{tarefa.dataTarefa | date:"dd/MM/yyyy"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dataTermino">
+            <th mat-header-cell *matHeaderCellDef> Data Término </th>
+            <td mat-cell *matCellDef="let tarefa"> {{tarefa.dataTermino | date:"dd/MM/yyyy"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef> Descrição </th>
+            <td mat-cell *matCellDef="let tarefa"> {{tarefa.descricao}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="finalizada">
+            <th mat-header-cell *matHeaderCellDef> Situação </th>
+            <td mat-cell *matCellDef="let tarefa">
+                <div *ngIf="tarefa.finalizada === true;else andamento">
+                    Finalizada
+                </div>
+                <ng-template #andamento>
+                    Em andamento
+                </ng-template>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let tarefa">
+                <button mat-flat-button color="primary" (click)="onUpdate(tarefa)">Editar</button>
+                &nbsp;
+                <button mat-flat-button color="primary" (click)="onDelete(tarefa)">Excluir</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

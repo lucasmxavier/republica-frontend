@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Historico do morador {{ morador.nome }}</h1>
+
+<div>
+    <ul>
+        <li *ngFor="let historico of historicos">
+            <div class="historicoList">
+                <p><b><h4>República: </h4></b>{{ historico.nomeRep }}</p>
+                <p><b><h4>Data de entrada: </h4></b>{{ historico.dataEntrada | date: 'dd/MM/yyyy'}}</p>
+                <p><b><h4>Data de saida: </h4></b>{{ historico.dataSaida | date: 'dd/MM/yyyy'}}</p>
+                <p>---------------------------------------------------------------------------</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="historico" cdkFocusInitial>Fechar</button>
+</div>
+

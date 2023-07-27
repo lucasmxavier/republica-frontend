@@ -1,0 +1,49 @@
+<div>
+    <h1>Cadastro de usuário</h1>
+</div>
+
+<div class="container">
+    <form class="login-form">
+        <mat-form-field>
+            <mat-label for="email">Email</mat-label>
+            <input id="username" [(ngModel)]="form.email" matInput 
+                placeholder="Digite seu email" name="email"
+                required minlength="3" maxlength="20">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field>
+            <mat-label for="pwd">Usuario</mat-label>
+            <input [(ngModel)]="form.username" id="username" matInput 
+                placeholder="Digite seu nome de usuario" name="username">
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field>
+            <mat-label for="pwd">Senha</mat-label>
+            <input [(ngModel)]="form.password" id="password" matInput 
+                type="password" placeholder="Digite sua senha" name="password"
+                required minlength="6">
+        </mat-form-field>   
+
+
+        <br>
+
+        <mat-form-field>
+            <mat-label for="pwd">Confimaçao de senha</mat-label>
+            <input [(ngModel)]="form.passwordConfirmation" id="passwordConfirmation" matInput 
+                type="password" placeholder="Redigite sua senha" name="passwordConfirmation"
+                required minlength="6">
+        </mat-form-field>
+
+        <button class="botao" mat-raised-button color="primary" (click)="handleRegister()">Realizar Cadastro</button>
+
+        <br>
+        <br>
+
+        <div class="alert alert-warning" *ngIf='isSignUpFailed'>{{errorMessage}}</div>
+        <div class="alert alert-success" *ngIf='isSuccessful'>{{successMessage}}</div>
+    </form>
+</div>

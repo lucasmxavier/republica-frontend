@@ -1,0 +1,11 @@
+<h2>Perfil</h2>
+<h4>Nome: </h4> {{ morador?.nome }}
+<h4>Apelido: </h4> {{ morador?.apelido }}
+<h4>Telefone: </h4> {{ morador?.telefone }}
+<h4>Link da Rede Social: </h4> {{ morador?.linkRedeSocial }}
+<h4>Telefone do Responsável(1): </h4> {{ morador?.telefoneResponsavel1 }}
+<h4>Telefone do Responsável(2): </h4> {{ morador?.telefoneResponsavel2 }}
+<h4>Sexo: </h4>{{ morador?.sexo }}
+<br>
+<br>
+<button mat-flat-button color="primary" (click)="onEditarMorador(morador)">Editar perfil</button>

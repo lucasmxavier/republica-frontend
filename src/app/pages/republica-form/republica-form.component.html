@@ -1,0 +1,91 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="republicaService.form">
+    <div class="container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+            <input formControlName="nome" matInput placeholder="Nome" [(ngModel)]="republica.nome" name="nome">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="vantagens" matInput placeholder="Vantagens" [(ngModel)]="republica.vantagens"
+                name="vantagens">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="numeroVagas" matInput type="number" placeholder="Numero de Vagas"
+                [(ngModel)]="republica.numeroVagas" name="numeroVagas">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select formControlName="tipoImovel" placeholder="Tipo do Imovel" [(ngModel)]="republica.tipoImovel"
+                name="tipoImovel">
+                <mat-option value="Apartamento">Apartamento</mat-option>
+                <mat-option value="Casa">Casa</mat-option>
+            </mat-select>
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select formControlName="genero" placeholder="Gênero" [(ngModel)]="republica.genero" name="genero">
+                <mat-option value="Feminina">Feminina</mat-option>
+                <mat-option value="Masculina">Masculina</mat-option>
+                <mat-option value="Unissex">Unissex</mat-option>
+            </mat-select>
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="linkEstatuto" matInput placeholder="Link do Estatuto"
+                [(ngModel)]="republica.linkEstatuto" name="linkEstatuto">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="cep" matInput placeholder="CEP" [(ngModel)]="endereco.cep" name="cep">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="estado" matInput placeholder="Estado" [(ngModel)]="endereco.estado"
+                name="estado">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="cidade" matInput placeholder="Cidade" [(ngModel)]="endereco.cidade"
+                name="cidade">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="bairro" matInput placeholder="Bairro" [(ngModel)]="endereco.bairro"
+                name="bairro">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="logradouro" matInput placeholder="Logradouro"
+                [(ngModel)]="endereco.logradouro" name="logradouro">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="pontoDeReferencia" matInput placeholder="Ponto de referência"
+                [(ngModel)]="endereco.pontoDeReferencia" name="pontoDeReferencia">
+        </mat-form-field>
+
+        <!--
+        <mat-form-field>
+            <mat-select formControlName="curso" placeholder="Curso" [(ngModel)]="republica.curso" name="curso">
+                <mat-option value="Agronomia">Agronomia</mat-option>
+                <mat-option value="Fisica">Física</mat-option>
+            </mat-select>
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+        -->
+
+        <button type="submit" mat-raised-button color="primary"
+            [disabled]="republicaService.form.invalid">Cadastrar</button>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<div>
+  <h1>Login</h1>
+</div>
+
+<div class="container">
+  <form class="login-form">
+    <mat-form-field>
+      <mat-label for="email">Usuário</mat-label>
+      <input id="username" [(ngModel)]="form.username" matInput placeholder="Digite seu usuário" name="username">
+    </mat-form-field>
+  
+    <br>
+
+    <mat-form-field>
+      <mat-label for="pwd">Senha</mat-label>
+      <input [(ngModel)]="form.password" id="password" matInput type="password" placeholder="Digite sua senha" name="password">
+    </mat-form-field>
+  
+    <br>
+    <div>
+      <button class="botao" mat-raised-button color="primary" (click)="handleLogin()">Realizar Login</button>
+      <button class="botao" mat-raised-button color="primary" (click)="handleRegister()">Cadastrar</button>
+    </div>
+    <br>
+    <br>
+
+    <div class="alert alert-warning" *ngIf='isLoginFailed'>{{errorMessage}}</div>
+  </form>
+</div>
+
+

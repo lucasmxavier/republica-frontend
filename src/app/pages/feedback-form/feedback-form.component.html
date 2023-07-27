@@ -1,0 +1,31 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="feedbackService.form">
+  <div class="container">
+    <input type="hidden" formControlName="$key" />
+
+    <mat-form-field>
+      <mat-select formControlName="tipo" placeholder="Tipo" [(ngModel)]="feedback.tipo" name="tipo">
+        <mat-option value="Reclamacao">Reclamação</mat-option>
+        <mat-option value="Sugestao">Sugestão</mat-option>
+      </mat-select>
+      <mat-error>Este campo é obrigatório.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea formControlName="descricao" matInput placeholder="Descrição" [(ngModel)]="feedback.descricao"
+        name="descricao"></textarea>
+      <mat-error>Este campo é obrigatório.</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="anonimo" id="anonimo" color="primary" [(ngModel)]="feedback.anonimo">Registrar
+      anonimamente</mat-checkbox>
+
+    <div *ngIf="feedback.id == undefined; else editar">
+      <button type="submit" mat-raised-button color="primary" [disabled]="feedbackService.form.invalid">
+        Cadastrar
+      </button>
+    </div>
+    <ng-template #editar>
+      <button mat-flat-button color="primary">Salvar</button>
+    </ng-template>
+  </div>
+</form>

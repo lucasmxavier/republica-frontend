@@ -1,0 +1,50 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport 
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false"
+    style="background-color: indigo">
+    <mat-toolbar style="color: whitesmoke">Menu</mat-toolbar>
+
+    <mat-nav-list *ngIf="isLoggedIn">
+      <a mat-list-item [routerLink]="['/republicas/disponiveis']" style="color: whitesmoke">Repúblicas Disponíveis</a>
+      <a mat-list-item [routerLink]="['/morador/perfil']" style="color: whitesmoke">Perfil</a>
+      <div *ngIf="(morador !== undefined && morador.republica !== null)">
+        <a mat-list-item [routerLink]="['/republica/financas']" style="color: whitesmoke">Finanças da República</a>
+        <a mat-list-item [routerLink]="['/morador/financas']" style="color: whitesmoke">Minhas Finanças</a>
+        <a mat-list-item [routerLink]="['/feedback']" style="color: whitesmoke">Reclamaçoes e sugestoes</a>
+        <a mat-list-item [routerLink]="['/republica/tarefas']" style="color: whitesmoke">Tarefas da República</a>
+        <a mat-list-item [routerLink]="['/morador/tarefas']" style="color: whitesmoke">Minhas Tarefas</a>
+      </div>
+      <a mat-list-item [routerLink]="['/republica/gerencia']" style="color: whitesmoke">Minha República</a>
+    </mat-nav-list>
+    
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" 
+        aria-label="Toggle sidenav" 
+        mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Gestão de Repúblicas</span>
+
+      <span class="fill-remaining-space"></span>
+      <mat-icon (click)="visualizarNotificacoes()" 
+        id="notifications"
+        *ngIf="solicitacoes.length != 0 || feedbacks.length != 0" 
+          matBadge="{{totalNotificacoes()}}"
+          matBadgeColor="warn">
+        notifications
+      </mat-icon>
+      
+      <div *ngIf="isLoggedIn">
+        <span>{{this.username}}</span>
+        <a  style="color: whitesmoke; margin-left: 32px; text-decoration: none;" 
+            href="/logout" (click)=handleLogout()>Logout</a>
+      </div>
+      
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container> 

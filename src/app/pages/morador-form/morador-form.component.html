@@ -1,0 +1,66 @@
+<div *ngIf="(this.morador.id === undefined)">
+    <h2>Dados de perfil de morador</h2>
+</div>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="moradorService.form">
+    <div class="container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+            <input formControlName="nome" matInput placeholder="Nome" [(ngModel)]="morador.nome" name="nome">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="apelido" matInput placeholder="Apelido" [(ngModel)]="morador.apelido"
+                name="apelido">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="telefone" matInput placeholder="Telefone" [(ngModel)]="morador.telefone"
+                name="telefone">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="link" matInput placeholder="Link da Rede Social"
+                [(ngModel)]="morador.linkRedeSocial" name="link">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="telefoneResponsavel1" matInput placeholder="Telefone do Responsável 1"
+                [(ngModel)]="morador.telefoneResponsavel1" name="telefoneResponsavel1">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="telefoneResponsavel2" matInput placeholder="Telefone do Responsavel 2"
+                [(ngModel)]="morador.telefoneResponsavel2" name="telefoneResponsavel2">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select formControlName="sexo" placeholder="Sexo" [(ngModel)]="morador.sexo" name="sexo">
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Feminino">Feminino</mat-option>
+            </mat-select>
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <!--
+        <mat-form-field>
+            <input formControlName="instituicao" matInput placeholder="Instituição de ensino"
+                [(ngModel)]="morador.instituicao" name="instituicao">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input formControlName="curso" matInput placeholder="Curso" [(ngModel)]="morador.curso" name="curso">
+            <mat-error>Este campo é obrigatório.</mat-error>
+        </mat-form-field>
+        -->
+
+        <button type="submit" mat-raised-button color="primary"
+            [disabled]="moradorService.form.invalid">Cadastrar</button>
+    </div>
+</form>

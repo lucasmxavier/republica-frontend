@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Solicitaçoes</h1>
+<div mat-dialog-content>
+    <div *ngIf="feedbacks.length > 0">
+        <b><h4>Reclamacoes e sugestoes em aberto: 
+            {{feedbacks.length}}
+        </h4></b>
+    </div>
+
+    <div *ngIf="solicitacoes.length > 0">
+    <b><h4>Solicitantes: </h4></b>
+        <ul>
+            <li *ngFor="let solicitacao of solicitacoes">
+                <div class="notification">
+                    <div>{{ solicitacao.solicitante.nome}}</div>
+                    <div class="botoes">
+                        <button class="btn" mat-flat-button color="primary"
+                            (click)="aceitarMorador(solicitacao)">Aceitar</button>
+                        <button class="btn" mat-flat-button color="warn"
+                            (click)="recusarMorador(solicitacao)">Recusar</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="solicitacoes" cdkFocusInitial>Ok</button>
+</div>

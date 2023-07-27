@@ -1,0 +1,86 @@
+<h2>Repúblicas Disponíveis</h2>
+
+<div>
+    <mat-form-field class="example-full-width">
+        <mat-label>Buscar República</mat-label>
+        <input #nomeRepublica name="nome" matInput placeholder="Nome da república">
+    </mat-form-field>
+    <button name="buscar" mat-flat-button color="primary" (click)="buscar(nomeRepublica.value)">Buscar</button>
+</div>
+
+<table mat-table [dataSource]="republicas" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="endereco">
+        <th mat-header-cell *matHeaderCellDef> Endereço </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.endereco.logradouro}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroVagas">
+        <th mat-header-cell *matHeaderCellDef > Capacidade </th>
+        <td mat-cell *matCellDef="let republica" > {{republica.numeroVagas}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipoImovel">
+        <th mat-header-cell *matHeaderCellDef> Locação </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.tipoImovel}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="genero">
+        <th mat-header-cell *matHeaderCellDef> Gênero </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.genero}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="numeroVagasDisponiveis">
+        <th mat-header-cell *matHeaderCellDef> Vagas </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.numeroVagasDisponiveis}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="representante">
+        <th mat-header-cell *matHeaderCellDef> Representante </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.representante.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="solicitar">
+        <th mat-header-cell *matHeaderCellDef>Solicitar</th>
+        <td mat-cell *matCellDef="let republica">             
+            <button mat-flat-button color="primary" (click)="solicitar(republica)">Solicitar</button>
+            &nbsp;
+        </td>
+    </ng-container>
+    
+    <!--
+    <ng-container matColumnDef="curso">
+        <th mat-header-cell *matHeaderCellDef> Curso </th>
+        <td mat-cell *matCellDef="let republica"> {{republica.curso}} </td>
+    </ng-container>
+    -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<!--
+<div class="cards" *ngFor="let republica of republicas">
+    <mat-card>
+        <mat-card-title>
+            {{ republica.nome }}
+        </mat-card-title>
+        <mat-card-content>
+            <p>{{ republica.tipoLocacao }}</p>
+            <p>{{ republica.endereco }}</p>
+            <p>{{ republica.genero }}</p>
+            <p>{{ republica.diferencial }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
+-->
